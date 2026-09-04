@@ -92,6 +92,9 @@ pub(crate) fn hid_code_for(name: &str) -> Option<u16> {
 ///
 /// Positions without a physical key (matrix placeholders) are omitted.
 /// Names correspond to [`crate::hid::Key::db_name`].
+/// 
+/// **Fn** key does not have a standard HID name, but included here as
+/// it can be received too.
 pub const FUN60_MATRIX_NAMES: &[(u8, &str)] = &[
     (1, "Esc"),
     (2, "Tab"),
@@ -145,6 +148,7 @@ pub const FUN60_MATRIX_NAMES: &[(u8, &str)] = &[
     (68, "["),
     (69, "'"),
     (70, "/"),
+    (71, "Fn"),
     (73, "="),
     (74, "]"),
     (76, "RShift"),

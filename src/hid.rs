@@ -4,6 +4,9 @@
 //! mode, and the vocabulary for the plugin's keymap. Only keys present on the
 //! FUN60 Ultra layout (plus a few extras likely to be useful for bindings)
 //! are named here.
+//! 
+//! One exception is the 'Fn' key. It does not have a standard HID name, but
+//! it can still be received (and cause panic if lookups are unchecked).
 
 /// A named HID keyboard usage code.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -82,6 +85,7 @@ pub enum Key {
     RMeta,
 
     // Navigation / misc
+    Fn,
     Application,
     F1,
     F2,
@@ -180,6 +184,7 @@ impl Key {
             Key::RMeta => 0xE7,
 
             // Navigation / misc
+            Key::Fn => 0x47, // careful here, as it's not standardized
             Key::Application => 0x65,
             Key::F1 => 0x3A,
             Key::F2 => 0x3B,
@@ -207,6 +212,7 @@ impl Key {
     /// Returns None for keys not on the FUN60 Ultra layout.
     pub const fn db_name(self) -> Option<&'static str> {
         match self {
+            Key::Fn => Some("Fn"),
             Key::Escape => Some("Esc"),
             Key::Tab => Some("Tab"),
             Key::CapsLock => Some("CapsLock"),
@@ -276,6 +282,7 @@ impl Key {
     /// This is the authoritative name → Key mapping used by the keymap.
     pub fn db_key_of(name: &str) -> Option<Self> {
         match name {
+            "Fn" => Some(Key::Fn),
             "Esc" => Some(Key::Escape),
             "Tab" => Some(Key::Tab),
             "CapsLock" => Some(Key::CapsLock),
