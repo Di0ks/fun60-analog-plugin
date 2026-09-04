@@ -1,0 +1,11 @@
+[package]
+name = "fun60_analog_plugin"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "fun60_analog_plugin"
+crate-type = ["cdylib", "rlib"]
+
+[dev-dependencies]
+libloading = "0.8"
