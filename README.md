@@ -53,7 +53,7 @@ sudo iot_driver depthd
 
 To use this library as a Rust crate add the following line to `Cargo.toml` under `[dependencies]`:
 ```toml
-fun60-analog-plugin = { git = "https://github.com/Di0ks/fun60-analog-plugin" }
+fun60_analog_plugin = { git = "https://github.com/Di0ks/fun60-analog-plugin" }
 ```
 
 If implementing an application using this library as a direct dependency, it's recommended to check whether the UDS socket exists and can be accessed. If not, the application can start a server on a non-root path (e.g. `iot_driver depthd -s /tmp/depth.sock`) and connect to it.

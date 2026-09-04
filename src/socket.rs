@@ -78,7 +78,6 @@ impl Iterator for EventIter {
     /// Returns `None` if the event queue is closed.
     fn next(&mut self) -> Option<Self::Item> {
         let (lock, cvar) = &*self.receiver.inner;
-        println!("locking");
         let mut ring = lock.lock().unwrap();
         loop {
             if let Some(ev) = ring.deque.pop_front() {
@@ -87,7 +86,6 @@ impl Iterator for EventIter {
             if ring.closed {
                 return None;
             }
-            println!("waiting");
             let guard = cvar.wait(ring).unwrap();
             ring = guard;
         }
@@ -171,6 +169,8 @@ impl std::fmt::Display for SocketError {
         }
     }
 }
+
+impl std::error::Error for SocketError {}
 
 /// Shared depth state updated by the reader thread.
 #[derive(Default)]
