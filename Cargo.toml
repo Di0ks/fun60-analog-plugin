@@ -2,6 +2,11 @@
 name = "fun60_analog_plugin"
 version = "0.1.2"
 edition = "2024"
+license-file = "LICENSE"
+description = "Wooting Analog SDK plugin implementation for MonsGeek FUN60 Ultra keyboard"
+repository = "https://github.com/Di0ks/fun60-analog-plugin"
+keywords = ["keyboard", "magnetic", "hid", "monsgeek"]
+categories = ["hardware-support"]
 
 [lib]
 name = "fun60_analog_plugin"
